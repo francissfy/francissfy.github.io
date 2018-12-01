@@ -1,13 +1,21 @@
-//to draw the time line
-function initTimeData(){
-    var t1 = new Date();
-    var t2 = t1;
-    t2 = t1.setDate(t1.getDate()-1);
-    var t3 = t1.setDate(t1.getDate()-2);
-    return [t1,t2,t3];
+//Constant macro;
+var ConstantMacro = function(){
+    this.canvasHeight = 1600;
+    this.canvasWidth = 964;
+    this.
 }
 
+function ConstantMacro(){}
 
+ConstantMacro.prototype = {
+    getCanvasHeight:function(){return this.canvasHeight;},
+    
+    getCanvasWidth:function(){return this.canvasWidth;}
+}
+
+var Macroinstance = new ConstantMacro();
+
+/////
 function genrateDateTag(document,mDate,color){//color is string
     var height = 60;
     var width = 155;
@@ -15,7 +23,7 @@ function genrateDateTag(document,mDate,color){//color is string
     const textFontNotToday = textSizeNotToday+"px PingFang SC";
     const textSizeToday = 26;
     const textFontToday = textSizeToday+"px PingFang SC";
-    var radius = 12;
+    var radius = 16;
     //
     const strokeLineWidth = 3;
     var mCanvas = document.createElement("CANVAS");
@@ -86,7 +94,7 @@ function genrateDateTag(document,mDate,color){//color is string
 function createEventCell(document,eventJson,color){
     var width = 220;
     var height = 75;
-    var radius = 12;
+    var radius = 16;
     const strokeWidth = 3;
     const eventDetailSize = 30;
     const eventDetailFont = eventDetailSize+"px PingFang SC";
@@ -153,6 +161,57 @@ function createEventCell(document,eventJson,color){
     mContext.fillText(responsor,width/2,(3-0.35)*height/4+eventResponsorSize/2);
     return mCanvas;
 }
+function drawScrollOval(document,color){
+    const outterRadius = 30;
+    const innerRadius = 22.5;
+    var mCanvas = document.createElement("CANVAS");
+    mCanvas.height = 2*outterRadius;
+    mCanvas.width = 2*innerRadius;
+    var mContext = mCanvas.getContext("2d");
+    mContext.fillStyle = color;
+    mContext.beginPath();
+    mContext.moveTo(outterRadius/2,0);
+    mContext.arc(outterRadius,outterRadius,outterRadius,-Math.Pi/2,3*Math.PI/2,false);
+    mContext.closePath();
+    mContext.fill();
+    mContext.moveTo(outterRadius/2,outterRadius-innerRadius);
+    mContext.arc(outterRadius,outterRadius,innerRadius,-Math.PI/2,3*Math.PI/2,false);
+    mContext.closePath();
+    mContext.fillStyle = "#FFF";
+    mContext.fill();
+    return mCanvas;
+}
+//eventJsonArray = [{"event":"Welcome coder!","responsor":"Severide","subEvent":[jsonData]},{...},{...}];
+function focusPageNoBlurNoPop(document,eventJsonArray,colorArray){
+    const canvasHeight = Macroinstance.getCanvasHeight;
+    const canvasWidth = Macroinstance.getCanvasWidth;
+    //calculate the height needed for this page;
+     v
+    //
+    var mCanvas = document.createElement("CANVAS");
+    mCanvas.width = canvasWidth;
+    mCanvas.height = canvasHeight;
+    var mContext = mCanvas.getContext("2d");
+    
+    
+}
+function popWindow(){
+    
+}
+function combineOnClik(eventIndex){
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

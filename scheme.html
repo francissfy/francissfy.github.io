@@ -1,7 +1,7 @@
 <!Doctype html>
 <head>
     <link rel="stylesheet" href="scheme_style.css"/>
-    <script type="text/javascript" src="scheme_control.js"></script>
+    <script type="text/javascript" src="componentDrawingUtility.js"></script>
     <script type="text/javascript" src="gaussianBlurControl.js"></script>
 </head>
 <body>
@@ -18,11 +18,12 @@
         var canvas = document.getElementById("mainCanvas");
         var wrapCanvas = document.getElementById("wrapCanvas");
         canvas.width = wrapCanvas.offsetWidth;
-        canvas.height = 1600;
+        canvas.height = 1000;
         const json = {"event":"Go!","responsor":"Me","subEvent":null};
         var generatedCon = createEventCell(document,json,"#E53935");
         var context = canvas.getContext("2d");
         //context.scale(2,2);
-        context.drawImage(generatedCon,0,0);
+        context.drawImage(generatedCon,10,10);
+        canvas.style.display = "block";
     </script>
 </body>

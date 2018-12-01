@@ -8,11 +8,10 @@
 }
 .wrapCanvas{
     align-content: center;
-    width: 964px;
+    width: auto;
     overflow-y: auto;
-    height: 1600px;
 }
 .mainCanvas{
     margin: auto;
-    
+    zoom:0.5;
 }
