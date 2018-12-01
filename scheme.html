@@ -1,9 +1,10 @@
 <!Doctype html>
 <head>
     <link rel="stylesheet" href="scheme_style.css"/>
+    <script type="text/javascript" src="scheme_control.js"></script>
+    <script type="text/javascript" src="gaussianBlurControl.js"></script>
 </head>
 <body>
-    <script type="text/javascript" src="scheme_control.js"></script>
     <div class="bodyDiv">
         <div class="title">
             <h1>Hello World!</h1>
@@ -18,10 +19,10 @@
         var wrapCanvas = document.getElementById("wrapCanvas");
         canvas.width = wrapCanvas.offsetWidth;
         canvas.height = 1600;
-        var generatedCon = genrateDateTag(document,new Date(),"#EF7352");
+        const json = {"event":"Go!","responsor":"Me","subEvent":null};
+        var generatedCon = createEventCell(document,json,"#E53935");
         var context = canvas.getContext("2d");
-        context.scale(5,5);
+        //context.scale(5,5);
         context.drawImage(generatedCon,0,0);
-        ////
     </script>
 </body>
