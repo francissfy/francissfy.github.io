@@ -1,29 +1,41 @@
 <!Doctype html>
 <head>
-    <link rel="stylesheet" href="scheme_style.css"/>
-    <script type="text/javascript" src="componentDrawingUtility.js"></script>
-    <script type="text/javascript" src="gaussianBlurControl.js"></script>
+    <style>
+        html{
+            height: 100%;
+        }
+    </style>
 </head>
-<body>
-    <div class="bodyDiv">
-        <div class="title">
-            <h1>I am Title</h1>
-        </div>
-        <div class = "wrapCanvas" id="wrapCanvas">
-            <canvas class="mainCanvas" id="mainCanvas"></canvas>
-        </div>
-    </div>
-    <script>
-        //auto adjust canvas size;
-        var canvas = document.getElementById("mainCanvas");
-        var wrapCanvas = document.getElementById("wrapCanvas");
-        canvas.width = wrapCanvas.offsetWidth;
-        canvas.height = 1000;
-        const json = {"event":"Go!","responsor":"Me","subEvent":null};
-        var generatedCon = createEventCell(document,json,"#E53935");
-        var context = canvas.getContext("2d");
-        //context.scale(2,2);
-        context.drawImage(generatedCon,10,10);
-        canvas.style.display = "block";
-    </script>
+<body style="
+height: 100%;
+width: 100%;
+margin: 0;
+background: linear-gradient(to bottom,#000,#000 10%,rgba(0,0,0,0.7));
+">
+<div id="hello" style="
+font-family: PingFangSC-Light;
+font-size: 50px;
+color: #FFFFFF;
+letter-spacing: -0.29px;
+text-align: center;
+top: 15%;
+width: 100%;
+position: fixed;
+">
+Hello
+</div>
+<div id="footNote" style="
+font-family: PingFangSC-Light;
+font-size: 20px;
+color: #FFFFFF;
+letter-spacing: -0.12px;
+text-align: center;
+text-decoration: underline;
+position: fixed;
+bottom: 8px;
+width: 100%;
+text-align: center;
+">
+Francis from SJTU. 2019 4 Feb.
+</div>
 </body>
