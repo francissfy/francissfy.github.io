@@ -61,7 +61,7 @@
                 </g>
             </g>
             <path d="M4.00301937,0.5 C2.06605904,0.5 0.5,2.06468729 0.5,4.00390541 L0.5,327.996095 C0.5,329.935029 2.06184902,331.5 4.00301937,331.5 L385.996981,331.5 C387.933941,331.5 389.5,329.935313 389.5,327.996095 L389.5,4.00390541 C389.5,2.06497093 387.938151,0.5 385.996981,0.5 L4.00301937,0.5 Z" id="Window-Rim-Highlight" stroke-opacity="0.15" stroke="#FFFFFF"></path>
-            <g id="swift" transform="translate(6.000000, 58.000000)" font-family="AndaleMono, Andale Mono" font-size="16" font-weight="normal" letter-spacing="-0.153600007">
+            <g id="swift" transform="translate(6.000000, 58.000000)" font-family="PingFangSC-Light" font-size="16" font-weight="normal" letter-spacing="-0.153600007">
                 <text id="import-Foundation-im">
                     <tspan x="0" y="15" fill="#FECD9D">import</tspan>
                     <tspan x="56.687775" y="15" letter-spacing="-0.163840011" fill="#FFFFFF"> Foundation</tspan>
