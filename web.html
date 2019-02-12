@@ -11,41 +11,105 @@
 height: 100%;
 width: 100%;
 margin: 0;
-background: linear-gradient(to bottom,#000,#000 10%,rgba(0,0,0,0.7));
+background: linear-gradient(to bottom,#000,#000 10%,rgba(0,0,0,0.4));
 ">
+<!--head-->
 <div id="hello" style="
 font-family: PingFangSC-Light;
 font-size: 50px;
 color: #FFFFFF;
 letter-spacing: -0.29px;
 text-align: center;
-top: 10%;
+top: 20px;
 width: 100%;
 position: fixed;
 ">
 H e l l o
 </div>
-
-<div id="content" style="
-display: flex;
-position: fixed;
-top: 20%;
-justify-content: center;
-height: auto;
-width: 100%;
-align-items: center;
+<!--test button part-->
+<!--
+<button onclick="animatedScroll('scrollContent',1000)">click</button>
+-->
+<!--Content begins-->
+<div id="scrollContent" style="
+position: absolute;
+margin: auto;
+top: 0;
+bottom: 0;
+left: 20px;
+right: 20px;
+width:auto;
+height: 500px;
+overflow: hidden;
+border-radius: 20px;
 ">
-<embed src="codeWindow.svg" style="margin:0;"/>
-<div style="width:10%"></div>
-<img src="swiftLogo.svg"/>
-<div style="width:10%"></div>
+<div id="content" style="
+height:2000px;
+width:100%;
+background: transparent;
+scroll-behavior: smooth;
+">
+<!--scroll content-->
+<div id="part1" style="height:500px;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    ">
+    <img src="window.png" style="
+    height: 332px;
+    width: 390px;"/>
+</div>
+<div id="part2" style="height:500px;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    ">
+    <p>part2</p>
+</div>
+<div id="part3" style="height:500px;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    ">
+    <p>part3</p>
+</div>
+<div id="part4" style="height:500px;
+    width: 100%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    ">
+    <p>part4</p>
 </div>
 
+</div>
+</div>
+
+<!--
+<div id="content" style="
+    display: flex;
+    position: fixed;
+    top: 20%;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    align-items: center;
+    ">
+    <img src="window.png" style="margin:0;height: 332px;width: 390px;"/>
+    <div style="width:10%"></div>
+    <img src="swiftLogo.svg"/>
+    <div style="width:10%"></div>
+</div>
+-->
+<!--foot note-->
 <div style="
 width: 100%;
 height: auto;
 position: fixed;
-bottom: 8%;
+bottom: 35px;
 color: white;
 text-align:center;
 ">
@@ -69,9 +133,64 @@ letter-spacing: -0.12px;
 text-align: center;
 text-decoration: underline;
 position: fixed;
-bottom: 8px;
+bottom: 10px;
 width: 100%;
 ">
 Francis from SJTU. 2019 4 Feb.
 </div>
+<script>
+    console.log('Hello visitors')
+    //test functions
+    function animatedScroll(id,moveTo){
+        let ele = document.getElementById(id)
+        let velocity = 1.2
+        let startPosition = ele.scrollTop
+        let refreshFreq = 15//15ms default velocity 0.4px/1ms
+        var currentPosition = startPosition
+        var timer = window.setInterval(move,refreshFreq)
+        let down = moveTo > startPosition
+        velocity = down? velocity:-velocity
+        function move(){
+            currentPosition+=velocity*refreshFreq
+            ele.scrollTop = currentPosition
+            if(down&&currentPosition>moveTo){window.clearInterval(timer);ele.scrollTop=moveTo}
+            if(!down&&currentPosition<moveTo){window.clearInterval(timer);ele.scrollTop=moveTo}
+        }
+    }
+    // guesture recognition
+    document.getElementById("scrollContent").addEventListener("mousewheel",guestureScroll)
+    var scrollFirstRecog = true
+    var srcollTimer = null
+    var firstMove = 0
+    var recogDelay = 500
+    function guestureScroll(e){
+        if(scrollFirstRecog){
+            firstMove = e.deltaY
+            scrollFirstRecog = false
+            srcollTimer = window.setTimeout(scrollRecg,recogDelay)
+        }
+    }
+    function scrollRecg(){
+        scrollFirstRecog = true
+        console.log(firstMove)
+        scrollPage(firstMove,"scrollContent","content")
+        window.clearTimeout(srcollTimer)
+        srcollTimer = null
+    }
+    function scrollPage(move,boxId,contentId){
+        let box = document.getElementById(boxId)
+        let con = document.getElementById(contentId)
+        let deltaHeight = box.clientHeight
+        let maxHeight = con.clientHeight
+        if(move>0){
+            if(box.scrollTop>=maxHeight-deltaHeight){}else{
+            animatedScroll(boxId,box.scrollTop+deltaHeight)
+            }
+        }else if(move<0){
+            if(box.scrollTop<=0){}else{
+            animatedScroll(boxId,box.scrollTop-deltaHeight)
+            }
+        }
+    }
+</script>
 </body>
