@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>
+    TTS with Acoustic BPE
+  </title>
+
+  <!-- bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <!-- icon -->
+  <script src="https://kit.fontawesome.com/87dc3e863a.js" crossorigin="anonymous"></script>
+  <!-- font -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <style>
+    body {
+      background: rgb(255, 255, 255) no-repeat fixed top left;
+      font-family:'Open Sans', sans-serif;
+    }
+  </style>
+
+</head>
+
+<body>
+  <!-- cover -->
+  <section>
+    <div class="jumbotron text-center mt-0" style="padding-bottom: 0px;">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <!-- paper title -->
+            <h2 style="font-size:30px;">
+                Text-to-Speech under Language Modeling Paradigm with Acoustic BPE
+            </h2>
+
+            <hr>
+            
+            <!-- authors -->
+            <h6>Feiyu Shen<sup>1</sup>,
+                 <br>
+                 <br>
+             <p> <sup>1</sup> X-LANCE Lab, Department of Computer Science and Engineering, Shanghai Jiao Tong University, Shanghai, China <br>
+            </p>
+
+            
+            <!-- links -->
+            <!--
+            <div class="row justify-content-center">
+              <div style="margin: 5px;">
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://arxiv.org/abs/2306.07547" role="button" target="_blank">
+                <i class="fa fa-file"></i>
+                Paper
+                </a> </p>
+              </div>
+            <div style="margin: 5px;">
+                <p class="mb-5"><a class="btn btn-large btn-dark" href="https://github.com/cpdu/unicats" role="button" target="_blank">
+                <i class="fa fa-file"></i>
+                Code
+                </a> </p>
+             </div>
+            </div>
+            -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- abstract -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Abstract</h3>
+          <hr style="margin-top:0px">
+        </div>
+          <p class="text-justify">
+            In short, this is Text-to-Speech under the language modeling paradigm, similar to VALL-E but with the Encodec token replaced by HuBERT discrete tokens.
+            Also, we encode discete tokens with Acousitc BPE to facilitate faster inference speed and more accurate synthesis. 
+           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+
+
+  <!-- demo -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3>Text-to-Speech of Different Discrete Tokens</h3>
+          <hr style="margin-top:0px">
+        </div>
+        
+		<table class="table">
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[2300-131720-0008] everything he has done has been aimed at the conservation of energy the contraction of space the intensification of culture </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/2300-131720-0008.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/2300-131720-0008.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/2300-131720-0008.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/2300-131720-0008.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[2961-960-0001] the influence with the timaeus has exercised upon posterity is due partly to a misunderstanding </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/2961-960-0001.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/2961-960-0001.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/2961-960-0001.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/2961-960-0001.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[260-123286-0030] suddenly the ichthyosaurus and the plesiosaurus disappear below leaving a whirlpool eddying in the water </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/260-123286-0030.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/260-123286-0030.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/260-123286-0030.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/260-123286-0030.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[5105-28241-0000] her sea going qualities were excellent and would have amply sufficed for a circumnavigation of the globe </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/5105-28241-0000.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/5105-28241-0000.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/5105-28241-0000.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/5105-28241-0000.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[1188-133604-0039] is has no beauty whatsoever no specialty of picturesqueness and all its lines are cramped and poor </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/1188-133604-0039.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/1188-133604-0039.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/1188-133604-0039.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/1188-133604-0039.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[3570-5696-0009] in strict accuracy nothing should be included under the head of conspicuous waste but such expenditure as is incurred on the ground of an invidious pecuniary comparison </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/3570-5696-0009.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/3570-5696-0009.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/3570-5696-0009.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/3570-5696-0009.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[5683-32866-0024] i shan't trouble you about my train of thoughts or fancies but i began to feel very like a gentleman in a ghost story watching experimentally in a haunted chamber </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/5683-32866-0024.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/5683-32866-0024.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/5683-32866-0024.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/5683-32866-0024.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[260-123286-0015]  it must be as wide as the mediterranean or the atlantic and why not </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/260-123286-0015.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/260-123286-0015.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/260-123286-0015.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/260-123286-0015.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+      <tr>
+        <td scope="col" colspan="3">[3575-170457-0044] after this disappointment i never dare reckon with certainty on the enjoyment of a pleasure again it seems as if some fatality stood between you and me </td>
+      </tr>
+      <tr>
+        <td align="center">wo aBPE</td>
+      </tr>
+      <tr>
+          <td><audio src="./resources/acoustic_bpe_valle/kms2k/3575-170457-0044.wav" controls=""></audio></td>
+      </tr>
+			<tr>
+				<td align="center">aBPE 5k</td>
+				<td align="center">aBPE 10k</td>
+				<td align="center">aBPE 20k</td>
+			</tr>
+			<tr>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe5k/3575-170457-0044.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe1w/3575-170457-0044.wav" controls=""></audio></td>
+				<td><audio src="./resources/acoustic_bpe_valle/kms2k_bpe2w/3575-170457-0044.wav" controls=""></audio></td>
+			</tr>
+      <!-------------------------------------------------------------->
+		</table>
+		
+      </div>
+    </div>
+  </section>
+
+  <!-- additional files -->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h3></h3>
+          <hr style="margin-top:0px">
+        </div>
+          <p class="text-justify">
+			Note: The utterance list for testing resynthesis, along with their corresponding prompts, is available here. [<a href="./resources/tts_utt2prompt">utterance_and_prompt</a>]
+		  </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- citing -->
+  <!--
+  <div class="container">
+    <div class="row ">
+      <div class="col-12">
+        <h3>Citation</h3>
+        <hr style="margin-top:0px">
+        <pre style="background-color: #e9eeef;padding: 1.25em 1.5em">
+<code>place citation here</code></pre>
+      </div>
+    </div>
+  </div>
+  -->
+
+</body>
+</html>
